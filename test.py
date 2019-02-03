@@ -10,7 +10,7 @@ url = "https://e.mail.ru/password/restore/"
 driver.get(url)
 
 # driver.delete_all_cookies()
-# driver.implicitly_wait(4)
+driver.implicitly_wait(4)
 driver.set_page_load_timeout(30)
 driver.maximize_window()
 

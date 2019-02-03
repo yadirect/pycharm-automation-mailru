@@ -2,43 +2,32 @@ from behave import *
 
 import time
 
-from selenium import webdriver
 
 use_step_matcher("re")
 
 
 @given('I open a browser and navigate to "restore" page')
 def step_impl(context):
-    path = "features/drivers/chromedriver.exe"
-    driver = webdriver.Chrome(path)
-
-    url = "https://e.mail.ru/password/restore/"
-    driver.get(url)
-    driver.set_page_load_timeout(30)
-    driver.maximize_window()
-
-    raise NotImplementedError(u'STEP: Given I open a browser and navigate to "restore" page')
+    driver.get("https://e.mail.ru/password/restore/")
 
 
 @when('I insert an "email"')
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When I insert an "email"')
+    email_field = driver.find_element_by_id("loginFormEmail")
+    email_field.clear()
+    email_field.send_keys("##aaaaaaa01")
+
 
 
 @step('I click on "restore" button')
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And I click on "restore" button')
+    next_button = driver.find_element_by_xpath("/html/body/div[10]/div[1]/div/div[1]/div/div[1]/form/div[3]/div/div/button/span")
+    next_button.click()
+
 
 
 @then('The "email does not exist" message should be displayed')
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then The "email does not exist" message should be displayed')
+    time.sleep(2)
+    assert "Указанный ящик не существует" in driver.page_source
+
