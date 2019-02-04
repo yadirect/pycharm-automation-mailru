@@ -79,4 +79,4 @@ behave --tags-help
 
 behave --tags @feature-name-TAG
 
-behave --tags @verify
+behave --tags @webverify

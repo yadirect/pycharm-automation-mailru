@@ -8,6 +8,10 @@ use_step_matcher("re")
 
 @given('I open a browser and navigate to "restore" page')
 def step_impl(context):
+    driver = webdriver.Chrome("features/drivers/chromedriver.exe")
+    driver.implicitly_wait(4)
+    driver.maximize_window()
+    driver.set_page_load_timeout(30)
     driver.get("https://e.mail.ru/password/restore/")
 
 
@@ -30,4 +34,5 @@ def step_impl(context):
 def step_impl(context):
     time.sleep(2)
     assert "Указанный ящик не существует" in driver.page_source
+    driver.quit()
 
