@@ -1,14 +1,16 @@
 from behave import *
 
+from selenium import webdriver
+
 import time
 
+driver = webdriver.Chrome("features/drivers/chromedriver.exe")
 
 use_step_matcher("re")
 
 
 @given('I open a browser and navigate to "restore" page')
 def step_impl(context):
-    driver = webdriver.Chrome("features/drivers/chromedriver.exe")
     driver.implicitly_wait(4)
     driver.maximize_window()
     driver.set_page_load_timeout(30)
